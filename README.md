@@ -5,7 +5,6 @@ Standalone client package to download only the latest forecast timeseries for a 
 ## What it does
 
 1. Calls `/subProjectIds` for the root project:
-   - `194fb871-086d-4117-9d70-119af3b80111` (default)
 2. Picks the subproject with the largest timestamp (latest forecast).
 3. Calls `/ghm-timeseries/{tsId}` for each PFAF ID.
 4. Saves each series to CSV in the output folder.
