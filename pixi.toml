@@ -1,0 +1,14 @@
+[workspace]
+name = "dhi-ghm-downloader"
+channels = ["conda-forge"]
+platforms = ["win-64"]
+version = "0.1.0"
+
+[tasks]
+python = "python"
+download_latest = "python download_latest_forecast.py"
+
+[dependencies]
+python = "3.12.*"
+requests = "*"
+pandas = "*"
