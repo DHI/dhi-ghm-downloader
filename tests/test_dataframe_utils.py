@@ -4,17 +4,23 @@ from pathlib import Path
 
 import pandas as pd
 
-
-PROJECT_SRC_ROOT = Path(__file__).resolve().parents[1].joinpath("dhi-ghm-downloader")
-if str(PROJECT_SRC_ROOT) not in sys.path:
-    sys.path.insert(0, str(PROJECT_SRC_ROOT))
-
-from src.dataframe_utils import (
-    extract_timeseries_items,
-    find_timeseries_id,
-    map_timeseries_items,
-    timeseries_dict_to_dataframe,
-)
+try:
+    from src.dataframe_utils import (
+        extract_timeseries_items,
+        find_timeseries_id,
+        map_timeseries_items,
+        timeseries_dict_to_dataframe,
+    )
+except ModuleNotFoundError:
+    PROJECT_SRC_ROOT = Path(__file__).resolve().parents[1].joinpath("dhi-ghm-downloader")
+    if str(PROJECT_SRC_ROOT) not in sys.path:
+        sys.path.insert(0, str(PROJECT_SRC_ROOT))
+    from src.dataframe_utils import (
+        extract_timeseries_items,
+        find_timeseries_id,
+        map_timeseries_items,
+        timeseries_dict_to_dataframe,
+    )
 
 
 class TestDataframeUtils(unittest.TestCase):

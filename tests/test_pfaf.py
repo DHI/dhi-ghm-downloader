@@ -3,12 +3,13 @@ import tempfile
 import unittest
 from pathlib import Path
 
-
-PROJECT_SRC_ROOT = Path(__file__).resolve().parents[1].joinpath("dhi-ghm-downloader")
-if str(PROJECT_SRC_ROOT) not in sys.path:
-    sys.path.insert(0, str(PROJECT_SRC_ROOT))
-
-from src.pfaf import parse_pfaf_ids
+try:
+    from src.pfaf import parse_pfaf_ids
+except ModuleNotFoundError:
+    PROJECT_SRC_ROOT = Path(__file__).resolve().parents[1].joinpath("dhi-ghm-downloader")
+    if str(PROJECT_SRC_ROOT) not in sys.path:
+        sys.path.insert(0, str(PROJECT_SRC_ROOT))
+    from src.pfaf import parse_pfaf_ids
 
 
 class TestPfaf(unittest.TestCase):

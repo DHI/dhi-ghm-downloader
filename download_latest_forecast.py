@@ -17,14 +17,19 @@ import sys
 from pathlib import Path
 from typing import Dict
 
-PROJECT_PACKAGE_ROOT = Path(__file__).resolve().parent.joinpath("dhi-ghm-downloader")
-if str(PROJECT_PACKAGE_ROOT) not in sys.path:
-    sys.path.insert(0, str(PROJECT_PACKAGE_ROOT))
-
-from src.api import ApiClient, ApiSettings
-from src.dataframe_utils import map_timeseries_items, timeseries_dict_to_dataframe
-from src.forecast import pick_latest_subproject
-from src.pfaf import parse_pfaf_ids
+try:
+    from src.api import ApiClient, ApiSettings
+    from src.dataframe_utils import map_timeseries_items, timeseries_dict_to_dataframe
+    from src.forecast import pick_latest_subproject
+    from src.pfaf import parse_pfaf_ids
+except ModuleNotFoundError:
+    PROJECT_PACKAGE_ROOT = Path(__file__).resolve().parent.joinpath("dhi-ghm-downloader")
+    if str(PROJECT_PACKAGE_ROOT) not in sys.path:
+        sys.path.insert(0, str(PROJECT_PACKAGE_ROOT))
+    from src.api import ApiClient, ApiSettings
+    from src.dataframe_utils import map_timeseries_items, timeseries_dict_to_dataframe
+    from src.forecast import pick_latest_subproject
+    from src.pfaf import parse_pfaf_ids
 
 DEFAULT_BASE_URL = "https://wrd-mike-cloud-performance-statistics.azurewebsites.net/api"
 DEFAULT_ENVIRONMENT = "prod"

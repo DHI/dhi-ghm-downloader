@@ -5,12 +5,13 @@ from pathlib import Path
 
 import pandas as pd
 
-
-PROJECT_SRC_ROOT = Path(__file__).resolve().parents[1].joinpath("dhi-ghm-downloader")
-if str(PROJECT_SRC_ROOT) not in sys.path:
-    sys.path.insert(0, str(PROJECT_SRC_ROOT))
-
-from src.forecast import find_subproject_timestamp, parse_datetime, pick_latest_subproject
+try:
+    from src.forecast import find_subproject_timestamp, parse_datetime, pick_latest_subproject
+except ModuleNotFoundError:
+    PROJECT_SRC_ROOT = Path(__file__).resolve().parents[1].joinpath("dhi-ghm-downloader")
+    if str(PROJECT_SRC_ROOT) not in sys.path:
+        sys.path.insert(0, str(PROJECT_SRC_ROOT))
+    from src.forecast import find_subproject_timestamp, parse_datetime, pick_latest_subproject
 
 
 class TestForecast(unittest.TestCase):

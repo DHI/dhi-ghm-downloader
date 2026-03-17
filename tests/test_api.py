@@ -3,12 +3,13 @@ import unittest
 from pathlib import Path
 from unittest.mock import Mock, patch
 
-
-PROJECT_SRC_ROOT = Path(__file__).resolve().parents[1].joinpath("dhi-ghm-downloader")
-if str(PROJECT_SRC_ROOT) not in sys.path:
-    sys.path.insert(0, str(PROJECT_SRC_ROOT))
-
-from src.api import ApiClient, ApiSettings
+try:
+    from src.api import ApiClient, ApiSettings
+except ModuleNotFoundError:
+    PROJECT_SRC_ROOT = Path(__file__).resolve().parents[1].joinpath("dhi-ghm-downloader")
+    if str(PROJECT_SRC_ROOT) not in sys.path:
+        sys.path.insert(0, str(PROJECT_SRC_ROOT))
+    from src.api import ApiClient, ApiSettings
 
 
 class TestApiClient(unittest.TestCase):
