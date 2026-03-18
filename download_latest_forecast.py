@@ -66,13 +66,17 @@ def parse_args() -> argparse.Namespace:
         default=[],
         help=(
             "PFAF IDs as space-separated values (e.g. 136320200000 219730300000) "
-            "or as one list string (e.g. '[136320200000,219730300000]')."
+            "or as one list string (e.g. '[136320200000,219730300000]'). "
+            "Required unless --pfaf-file is provided."
         ),
     )
     parser.add_argument(
         "--pfaf-file",
         default=None,
-        help="Optional text file containing PFAF IDs separated by comma/newline.",
+        help=(
+            "Text file containing PFAF IDs separated by comma/newline. "
+            "Required unless --pfaf-ids is provided."
+        ),
     )
     parser.add_argument(
         "--outdir",
