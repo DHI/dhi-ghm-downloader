@@ -28,6 +28,17 @@ pixi install
 
 `--project-id` is required.
 
+At least one PFAF input is required:
+
+- `--pfaf-ids`
+- `--pfaf-file`
+
+If neither is provided, the script exits with an input error:
+
+```text
+Input error: Provide PFAF IDs with --pfaf-ids and/or --pfaf-file
+```
+
 Use space-separated PFAF IDs:
 
 ```bash
@@ -58,6 +69,7 @@ Required arguments:
 
 - `--api-key`
 - `--project-id`
+- At least one of: `--pfaf-ids` or `--pfaf-file`
 
 Optional arguments:
 
